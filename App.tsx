@@ -29,15 +29,15 @@ return {...c, order: card.order}
   }))
 }
 const onDragOverTodo = (e) => {
-e.preventDefault ()
-e.target.style.background =  'grey'
+e.preventDefault()
+
 }
 const dragStartTodo = (e, card) => {
 setCurrentCard(card)
+e.target.style.background =  'grey'
 }
 
 const onDragTodo = (e) => {
-  e.target.style.background =  'white'
 }
 const sortCards = (a, b) => {
 if(a.order > b.order) {
