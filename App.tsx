@@ -4,44 +4,64 @@ import './style.css';
 export default function App() {
 
 const [cardList, setCardList] = React.useState([
-  {id: 1, order: 1, text: 'карточка 1'},
-  {id: 2, order: 2, text: 'карточка 2'},
-  {id: 3, order: 3, text: 'карточка 3'},
+  {id: 1, order: 3, text: 'карточка 1'},
+  {id: 2, order: 1, text: 'карточка 2'},
+  {id: 3, order: 2, text: 'карточка 3'},
   {id: 4, order: 4, text: 'карточка 4'},
 ])
+const [currentCard, setCurrentCard] = React.useState(null)
 
-const onDropTodo = (e) => {
 
+
+const dragEndTodo = (e) => {
+  e.target.style.background =  'white'
+}
+const onDropTodo = (e, card) => {
+  e.preventDefault ()
+  setCardList(cardList.sort(sortCards).map((c)=> {
+    if(c.id === card.id) {
+return {...c, order: currentCard.order}
+    }
+    if(c.id === currentCard.id) {
+return {...c, order: card.order}
+    }
+    return c
+  }))
 }
 const onDragOverTodo = (e) => {
-
+e.preventDefault ()
+e.target.style.background =  'red'
 }
-const dragStartTodo = (e) => {
-
+const dragStartTodo = (e, card) => {
+setCurrentCard(card)
 }
-const dragEndTodo = (e) => {
 
-}
 const onDragTodo = (e) => {
-
+  e.target.style.background =  'white'
 }
-
+const sortCards = (a, b) => {
+if(a.order > b.order) {
+  return 1
+} else {
+  return -1
+}
+}
 
   return (
     <div className='container'>
-      {cardList.map(i=> {
+      {cardList.map( card=> {
         return (
           <div 
           className='card' 
-          id={i.id}
-          key={i.id}
+          // id={i.id}
+          key={ card.id}
           draggable
-          onDrop={e => onDropTodo(e)}
+          onDragStart ={(e)=> dragStartTodo(e, card)}
+          onDrop={e => onDropTodo(e, card)}
           onDragOver={e => onDragOverTodo(e)}
-          onDragStart ={(e)=> dragStartTodo(e)}
           onDragEnd ={(e)=> dragEndTodo(e)}
-          onDrag={e => onDragTodo(e, card)}
-          >{i.text}</div>
+          onDragLeave={e => onDragTodo(e)}
+          >{ card.text}</div>
         )
       })}
     </div>
