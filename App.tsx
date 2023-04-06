@@ -18,7 +18,7 @@ const dragEndTodo = (e) => {
 }
 const onDropTodo = (e, card) => {
   e.preventDefault ()
-  setCardList(cardList.sort(sortCards).map((c)=> {
+  setCardList(cardList.map((c)=> {
     if(c.id === card.id) {
 return {...c, order: currentCard.order}
     }
@@ -30,7 +30,7 @@ return {...c, order: card.order}
 }
 const onDragOverTodo = (e) => {
 e.preventDefault ()
-e.target.style.background =  'red'
+e.target.style.background =  'grey'
 }
 const dragStartTodo = (e, card) => {
 setCurrentCard(card)
@@ -49,7 +49,7 @@ if(a.order > b.order) {
 
   return (
     <div className='container'>
-      {cardList.map( card=> {
+      {cardList.sort(sortCards).map( card=> {
         return (
           <div 
           className='card' 
