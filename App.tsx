@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Cards } from './Cards';
 import './style.css';
 
 export default function App() {
@@ -49,7 +50,7 @@ if(a.order > b.order) {
 
   return (
     <div className='container'>
-      {cardList.sort(sortCards).map( card=> {
+      {/* {cardList.sort(sortCards).map( card=> {
         return (
           <div 
           className='card' 
@@ -63,7 +64,8 @@ if(a.order > b.order) {
           onDragLeave={e => onDragTodo(e)}
           >{ card.text}</div>
         )
-      })}
+      })} */}
+      <Cards/>
     </div>
   );
 }

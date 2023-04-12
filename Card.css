@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cardList {
+  width: 150px;
+  height: 250px;
+  border: 4px solid gray;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-around;
+  margin: 5px;
+  cursor: grab;
+  border-radius: 5px;
+  background: white;
+}
+
+.item {
+  border: 2px solid rgb(209, 97, 97);
+  margin: 2px;
+}
