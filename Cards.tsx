@@ -9,6 +9,24 @@ export const Cards =() => {
     {id: 4, order: 4, title: 'карточка 4', items :[{id: 10, title: 'j'}, {id: 11, title: 'k'}, {id: 12, title: 'l'}]},
   ])
 
+  const [currentCard, setCurrentCard] = React.useState(null)
+
+const  dragStartTodo = (e) => {
+  e.target.style.background =  'grey'
+  }
+  const dragEndTodo = (e) => {
+    e.target.style.background =  'white'
+    
+  }
+  const onDragTodo = (event, todo) => {
+    event.preventDefault();
+    // this.setState({
+    //   draggedTask: todo
+    // });
+  };
+
+
+
 return (
   <div className={'container'}> 
  {cardList.map(card=> {
@@ -18,7 +36,12 @@ return (
       {card.items.map(i=> {
         return (
           <div className='item'
+          // id={i.id}
+          key={i.id}
           draggable
+          onDragStart ={(e)=> dragStartTodo(e)}
+          onDragEnd ={(e)=> dragEndTodo(e)}
+          onDrag={event => onDragTodo(event,i)}
           >
             {i.title}
           </div>

@@ -49,8 +49,9 @@ if(a.order > b.order) {
 }
 
   return (
-    <div className='container'>
-      {/* {cardList.sort(sortCards).map( card=> {
+    <div>
+<div className='container'>
+      {cardList.sort(sortCards).map( card=> {
         return (
           <div 
           className='card' 
@@ -64,8 +65,10 @@ if(a.order > b.order) {
           onDragLeave={e => onDragTodo(e)}
           >{ card.text}</div>
         )
-      })} */}
-      <Cards/>
+      })}
     </div>
+    <Cards/>
+    </div>
+    
   );
 }
